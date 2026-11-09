@@ -1,0 +1,81 @@
+// Global complex type definition
+typedef struct packed {
+    logic signed [31:0] real_part;
+    logic signed [31:0] imag_part;
+} complex_t;
+
+module FractralTOPLVL (
+    input logic clk,
+    input logic rst,
+    output logic [7:0] pixel_color_out, // Final iteration count / color for the display
+    output logic frame_done            // Pulses high when a full frame finishes rendering
+);
+
+    // Screen Resolution Constants (e.g., VGA 640x480)
+    localparam int SCREEN_WIDTH  = 640;
+    localparam int SCREEN_HEIGHT = 480;
+
+    // Pixel scan counters
+    logic [9:0] x_pixel; // 0 to 639
+    logic [8:0] y_pixel; // 0 to 479
+
+    // Zoom and Center Registers (Stored in Q4.28 format)
+    // Initial center: looking at the origin (0, 0) or a cool spiral coordinate like -0.75 + 0.1i
+    logic signed [31:0] center_x = 32'shFFF38000; // Approx -0.75 in Q4.28
+    logic signed [31:0] center_y = 32'sh0019999A; // Approx +0.1 in Q4.28
+    
+    // Scale factor register: controls how zoomed in we are. Starts wide, shrinks over time.
+    logic signed [63:0] scale = 64'sh000000040000000; // Initial span width
+
+    complex_t c_coord;
+    logic [7:0] core_iter_out;
+
+    // Instantiate your core math engine
+    mandelbrot_generator math_engine (
+        .clk(clk),
+        .rst(rst),
+        .c_in(c_coord),
+        .iter_out(core_iter_out)
+    );
+
+    // 1. Pixel Scanner & Frame Coordinator
+    always_ff @(posedge clk or posedge rst) begin
+        if (rst) begin
+            x_pixel <= '0;
+            y_pixel <= '0;
+            frame_done <= 1'b0;
+            scale <= 64'sh000000040000000; // Reset scale
+        end else begin
+            frame_done <= 1'b0;
+
+            if (x_pixel == SCREEN_WIDTH - 1) begin
+                x_pixel <= '0;
+                if (y_pixel == SCREEN_HEIGHT - 1) begin
+                    y_pixel <= '0;
+                    frame_done <= 1'b1; // Finished a full frame!
+                    
+                    // INFINITE ZOOM LOGIC: Shrink the scale slightly every single frame
+                    // Multiplying by a fraction (e.g., subtracting 0.99% per frame) pulls us deeper
+                    scale <= scale - (scale >>> 7); 
+                end else begin
+                    y_pixel <= y_pixel + 1;
+                end
+            end else begin
+                x_pixel <= x_pixel + 1;
+            end
+        end
+    end
+
+    // 2. Coordinate Translator: Maps screen (X, Y) pixels to complex plane coordinates (c)
+    // c = center + (pixel_offset * scale)
+    // For simplicity in this wiring step, we map x_pixel and y_pixel relative to screen center
+    always_comb begin
+        // Shift pixel coordinates to center the screen at (0,0) and scale them
+        c_coord.real_part = center_x + $signed(((x_pixel - (SCREEN_WIDTH/2)) * scale) >>> 20);
+        c_coord.imag_part = center_y + $signed(((y_pixel - (SCREEN_HEIGHT/2)) * scale) >>> 20);
+        
+        // Pass core iteration output directly to our pixel color output
+        pixel_color_out = core_iter_out;
+    end
+
+endmodule

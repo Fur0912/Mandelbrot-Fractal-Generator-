@@ -1,0 +1,25 @@
+module mandelbrot_generator (
+    input logic clk,
+    input logic rst
+);
+
+    // Define a custom data type for complex numbers
+    // (Using fixed-point representation so the hardware can do math efficiently)
+    typedef struct packed {
+        logic signed [31:0] real_part;
+        logic signed [31:0] imag_part;
+    } complex_t;
+
+    // Signal declarations using our new type:
+    complex_t c;
+    complex_t z;
+
+    always_ff @(posedge clk or posedge rst) begin
+        if (rst) begin
+            // Reset logic goes here
+        end else begin
+            // Mandelbrot iteration logic will go here
+        end
+    end
+
+endmodule
