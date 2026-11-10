@@ -1,11 +1,11 @@
-Analysis & Synthesis Status : Successful - Sun Oct 25 21:19:02 2026
+Analysis & Synthesis Status : Successful - Tue Nov 10 00:06:43 2026
 Quartus Prime Version : 25.1std.0 Build 1129 10/21/2025 SC Lite Edition
 Revision Name : MandralFractralGen
 Top-level Entity Name : FractralTOPLVL
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
 Total registers : 166
-Total pins : 29
+Total pins : 32
 Total virtual pins : 0
 Total block memory bits : 0
 Total DSP Blocks : 21

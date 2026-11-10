@@ -1,4 +1,4 @@
-// Global complex type definition
+// Define the complex type globally so it's accessible everywhere
 typedef struct packed {
     logic signed [31:0] real_part;
     logic signed [31:0] imag_part;
@@ -12,7 +12,12 @@ module FractralTOPLVL (
     output logic [7:0] VGA_R,        // Red Color Channel (8-bit)
     output logic [7:0] VGA_G,        // Green Color Channel (8-bit)
     output logic [7:0] VGA_B,        // Blue Color Channel (8-bit)
-    output logic       frame_done       
+    output logic       frame_done,
+    
+    // VGA DAC Control Pins
+    output logic       VGA_CLK,      // Drives the physical DAC clock
+    output logic       VGA_BLANK_N,  // Tells the DAC when to output color
+    output logic       VGA_SYNC_N    // Sync on green (usually tied to 0)
 );
 
     // Screen Resolution Constants (VGA 640x480 @ 60Hz timing parameters)
@@ -76,13 +81,13 @@ module FractralTOPLVL (
     logic signed [31:0] center_y = 32'sh0019999A; // Approx +0.1 in Q4.28
     
     // Scale factor register: controls zoom level.
-    logic signed [63:0] scale = 64'sh000000040000000; 
+    logic signed [63:0] scale = 64'sh0000000010000000; 
 
     // Frame completion and infinite zoom handler
     always_ff @(posedge clk or posedge rst) begin
         if (rst) begin
             frame_done <= 1'b0;
-            scale      <= 64'sh000000040000000; 
+            scale      <= 64'sh0000000010000000; 
         end else begin
             frame_done <= 1'b0;
             if (pixel_clk_en && (h_count == HTOT - 1) && (v_count == VTOT - 1)) begin
@@ -103,6 +108,7 @@ module FractralTOPLVL (
         x_offset = $signed({1'b0, x_pixel}) - (HD / 2);
         y_offset = $signed({1'b0, y_pixel}) - (VD / 2);
 
+        // Map screen coordinates relative to center, scaled by the current zoom factor
         c_coord.real_part = center_x + $signed((x_offset * scale) >>> 28);
         c_coord.imag_part = center_y + $signed((y_offset * scale) >>> 28);
     end
@@ -127,5 +133,10 @@ module FractralTOPLVL (
             VGA_B = 8'h00;
         end
     end
+
+    // Drive the physical VGA DAC chip
+    assign VGA_CLK = pixel_clk_en;    
+    assign VGA_BLANK_N = video_on;    
+    assign VGA_SYNC_N = 1'b0;         
 
 endmodule

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for MandralFractralGen
-Sun Oct 25 21:19:02 2026
+Tue Nov 10 00:06:43 2026
 Quartus Prime Version 25.1std.0 Build 1129 10/21/2025 SC Lite Edition
 
 
@@ -45,14 +45,14 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sun Oct 25 21:19:02 2026           ;
+; Analysis & Synthesis Status     ; Successful - Tue Nov 10 00:06:43 2026           ;
 ; Quartus Prime Version           ; 25.1std.0 Build 1129 10/21/2025 SC Lite Edition ;
 ; Revision Name                   ; MandralFractralGen                              ;
 ; Top-level Entity Name           ; FractralTOPLVL                                  ;
 ; Family                          ; Cyclone V                                       ;
 ; Logic utilization (in ALMs)     ; N/A                                             ;
 ; Total registers                 ; 166                                             ;
-; Total pins                      ; 29                                              ;
+; Total pins                      ; 32                                              ;
 ; Total virtual pins              ; 0                                               ;
 ; Total block memory bits         ; 0                                               ;
 ; Total DSP Blocks                ; 21                                              ;
@@ -176,14 +176,14 @@ on the Quartus Prime software download page.
 +----------------------------+-------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                                 ;
-+----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                             ; Library ;
-+----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------------------+---------+
-; MandralFractralGen.sv            ; yes             ; User SystemVerilog HDL File  ; C:/Users/smfur/AppData/Roaming/quartus/MandralFractralGen/MandralFractralGen.sv          ;         ;
-; output_files/FractralTOPLVL.sv   ; yes             ; User SystemVerilog HDL File  ; C:/Users/smfur/AppData/Roaming/quartus/MandralFractralGen/output_files/FractralTOPLVL.sv ;         ;
-+----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------------------+---------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                   ;
++----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                               ; Library ;
++----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------+---------+
+; MandralFractralGen.sv            ; yes             ; User SystemVerilog HDL File  ; C:/Users/smfur/Downloads/MandralFractralGen/MandralFractralGen.sv          ;         ;
+; output_files/FractralTOPLVL.sv   ; yes             ; User SystemVerilog HDL File  ; C:/Users/smfur/Downloads/MandralFractralGen/output_files/FractralTOPLVL.sv ;         ;
++----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------+---------+
 
 
 +---------------------------------------------------------+
@@ -191,25 +191,25 @@ on the Quartus Prime software download page.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimate of Logic utilization (ALMs needed) ; 304       ;
+; Estimate of Logic utilization (ALMs needed) ; 309       ;
 ;                                             ;           ;
-; Combinational ALUT usage for logic          ; 587       ;
+; Combinational ALUT usage for logic          ; 596       ;
 ;     -- 7 input functions                    ; 0         ;
 ;     -- 6 input functions                    ; 20        ;
-;     -- 5 input functions                    ; 4         ;
-;     -- 4 input functions                    ; 6         ;
-;     -- <=3 input functions                  ; 557       ;
+;     -- 5 input functions                    ; 10        ;
+;     -- 4 input functions                    ; 8         ;
+;     -- <=3 input functions                  ; 558       ;
 ;                                             ;           ;
 ; Dedicated logic registers                   ; 166       ;
 ;                                             ;           ;
-; I/O pins                                    ; 29        ;
+; I/O pins                                    ; 32        ;
 ;                                             ;           ;
 ; Total DSP Blocks                            ; 21        ;
 ;                                             ;           ;
 ; Maximum fan-out node                        ; clk~input ;
 ; Maximum fan-out                             ; 166       ;
-; Total fan-out                               ; 3129      ;
-; Average fan-out                             ; 3.76      ;
+; Total fan-out                               ; 3174      ;
+; Average fan-out                             ; 3.75      ;
 +---------------------------------------------+-----------+
 
 
@@ -218,8 +218,8 @@ on the Quartus Prime software download page.
 +-------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------+--------------------+--------------+
 ; Compilation Hierarchy Node          ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                            ; Entity Name        ; Library Name ;
 +-------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------+--------------------+--------------+
-; |FractralTOPLVL                     ; 587 (312)           ; 166 (86)                  ; 0                 ; 21         ; 29   ; 0            ; |FractralTOPLVL                                ; FractralTOPLVL     ; work         ;
-;    |MandralFractralGen:math_engine| ; 275 (275)           ; 80 (80)                   ; 0                 ; 9          ; 0    ; 0            ; |FractralTOPLVL|MandralFractralGen:math_engine ; MandralFractralGen ; work         ;
+; |FractralTOPLVL                     ; 596 (313)           ; 166 (86)                  ; 0                 ; 21         ; 32   ; 0            ; |FractralTOPLVL                                ; FractralTOPLVL     ; work         ;
+;    |MandralFractralGen:math_engine| ; 283 (283)           ; 80 (80)                   ; 0                 ; 9          ; 0    ; 0            ; |FractralTOPLVL|MandralFractralGen:math_engine ; MandralFractralGen ; work         ;
 +-------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------+--------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -261,7 +261,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------+---------+
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
-; scale[30]                              ; 6       ;
+; scale[28]                              ; 6       ;
 ; Total number of inverted registers = 1 ;         ;
 +----------------------------------------+---------+
 
@@ -276,25 +276,26 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;     CLR SCLR          ; 72                          ;
 ;     ENA CLR           ; 72                          ;
 ;     ENA CLR SCLR      ; 20                          ;
-; arriav_lcell_comb     ; 587                         ;
+; arriav_lcell_comb     ; 597                         ;
 ;     arith             ; 316                         ;
 ;         1 data inputs ; 76                          ;
 ;         2 data inputs ; 240                         ;
-;     normal            ; 39                          ;
+;     normal            ; 49                          ;
+;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 2                           ;
-;         2 data inputs ; 3                           ;
+;         2 data inputs ; 4                           ;
 ;         3 data inputs ; 4                           ;
-;         4 data inputs ; 6                           ;
-;         5 data inputs ; 4                           ;
+;         4 data inputs ; 8                           ;
+;         5 data inputs ; 10                          ;
 ;         6 data inputs ; 20                          ;
 ;     shared            ; 232                         ;
 ;         0 data inputs ; 2                           ;
 ;         2 data inputs ; 154                         ;
 ;         3 data inputs ; 76                          ;
 ; arriav_mac            ; 21                          ;
-; boundary_port         ; 29                          ;
+; boundary_port         ; 32                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 9.30                        ;
+; Max LUT depth         ; 9.20                        ;
 ; Average LUT depth     ; 5.63                        ;
 +-----------------------+-----------------------------+
 
@@ -314,35 +315,37 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 25.1std.0 Build 1129 10/21/2025 SC Lite Edition
-    Info: Processing started: Sun Oct 25 21:18:54 2026
+    Info: Processing started: Tue Nov 10 00:06:35 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off MandralFractralGen -c MandralFractralGen
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file mandralfractralgen.sv
-    Info (12023): Found entity 1: MandralFractralGen File: C:/Users/smfur/AppData/Roaming/quartus/MandralFractralGen/MandralFractralGen.sv Line: 7
+    Info (12023): Found entity 1: MandralFractralGen File: C:/Users/smfur/Downloads/MandralFractralGen/MandralFractralGen.sv Line: 7
 Info (12021): Found 1 design units, including 1 entities, in source file output_files/fractraltoplvl.sv
-    Info (12023): Found entity 1: FractralTOPLVL File: C:/Users/smfur/AppData/Roaming/quartus/MandralFractralGen/output_files/FractralTOPLVL.sv Line: 7
+    Info (12023): Found entity 1: FractralTOPLVL File: C:/Users/smfur/Downloads/MandralFractralGen/output_files/FractralTOPLVL.sv Line: 7
 Info (12127): Elaborating entity "FractralTOPLVL" for the top level hierarchy
-Warning (10230): Verilog HDL assignment warning at FractralTOPLVL.sv(52): truncated value with size 32 to match size of target (10) File: C:/Users/smfur/AppData/Roaming/quartus/MandralFractralGen/output_files/FractralTOPLVL.sv Line: 52
-Warning (10230): Verilog HDL assignment warning at FractralTOPLVL.sv(55): truncated value with size 32 to match size of target (10) File: C:/Users/smfur/AppData/Roaming/quartus/MandralFractralGen/output_files/FractralTOPLVL.sv Line: 55
-Warning (10230): Verilog HDL assignment warning at FractralTOPLVL.sv(106): truncated value with size 64 to match size of target (32) File: C:/Users/smfur/AppData/Roaming/quartus/MandralFractralGen/output_files/FractralTOPLVL.sv Line: 106
-Warning (10230): Verilog HDL assignment warning at FractralTOPLVL.sv(107): truncated value with size 64 to match size of target (32) File: C:/Users/smfur/AppData/Roaming/quartus/MandralFractralGen/output_files/FractralTOPLVL.sv Line: 107
-Info (12128): Elaborating entity "MandralFractralGen" for hierarchy "MandralFractralGen:math_engine" File: C:/Users/smfur/AppData/Roaming/quartus/MandralFractralGen/output_files/FractralTOPLVL.sv Line: 116
-Warning (10230): Verilog HDL assignment warning at MandralFractralGen.sv(46): truncated value with size 64 to match size of target (32) File: C:/Users/smfur/AppData/Roaming/quartus/MandralFractralGen/MandralFractralGen.sv Line: 46
-Warning (10230): Verilog HDL assignment warning at MandralFractralGen.sv(47): truncated value with size 64 to match size of target (32) File: C:/Users/smfur/AppData/Roaming/quartus/MandralFractralGen/MandralFractralGen.sv Line: 47
-Warning (10230): Verilog HDL assignment warning at MandralFractralGen.sv(48): truncated value with size 32 to match size of target (8) File: C:/Users/smfur/AppData/Roaming/quartus/MandralFractralGen/MandralFractralGen.sv Line: 48
+Warning (10230): Verilog HDL assignment warning at FractralTOPLVL.sv(57): truncated value with size 32 to match size of target (10) File: C:/Users/smfur/Downloads/MandralFractralGen/output_files/FractralTOPLVL.sv Line: 57
+Warning (10230): Verilog HDL assignment warning at FractralTOPLVL.sv(60): truncated value with size 32 to match size of target (10) File: C:/Users/smfur/Downloads/MandralFractralGen/output_files/FractralTOPLVL.sv Line: 60
+Warning (10230): Verilog HDL assignment warning at FractralTOPLVL.sv(112): truncated value with size 64 to match size of target (32) File: C:/Users/smfur/Downloads/MandralFractralGen/output_files/FractralTOPLVL.sv Line: 112
+Warning (10230): Verilog HDL assignment warning at FractralTOPLVL.sv(113): truncated value with size 64 to match size of target (32) File: C:/Users/smfur/Downloads/MandralFractralGen/output_files/FractralTOPLVL.sv Line: 113
+Info (12128): Elaborating entity "MandralFractralGen" for hierarchy "MandralFractralGen:math_engine" File: C:/Users/smfur/Downloads/MandralFractralGen/output_files/FractralTOPLVL.sv Line: 122
+Warning (10230): Verilog HDL assignment warning at MandralFractralGen.sv(47): truncated value with size 64 to match size of target (32) File: C:/Users/smfur/Downloads/MandralFractralGen/MandralFractralGen.sv Line: 47
+Warning (10230): Verilog HDL assignment warning at MandralFractralGen.sv(50): truncated value with size 64 to match size of target (32) File: C:/Users/smfur/Downloads/MandralFractralGen/MandralFractralGen.sv Line: 50
+Warning (10230): Verilog HDL assignment warning at MandralFractralGen.sv(52): truncated value with size 32 to match size of target (8) File: C:/Users/smfur/Downloads/MandralFractralGen/MandralFractralGen.sv Line: 52
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "VGA_SYNC_N" is stuck at GND File: C:/Users/smfur/Downloads/MandralFractralGen/output_files/FractralTOPLVL.sv Line: 21
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 646 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 658 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 2 input pins
-    Info (21059): Implemented 27 output pins
-    Info (21061): Implemented 596 logic cells
+    Info (21059): Implemented 30 output pins
+    Info (21061): Implemented 605 logic cells
     Info (21062): Implemented 21 DSP elements
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 8 warnings
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 10 warnings
     Info: Peak virtual memory: 4905 megabytes
-    Info: Processing ended: Sun Oct 25 21:19:02 2026
+    Info: Processing ended: Tue Nov 10 00:06:43 2026
     Info: Elapsed time: 00:00:08
-    Info: Total CPU time (on all processors): 00:00:18
+    Info: Total CPU time (on all processors): 00:00:19
 
 

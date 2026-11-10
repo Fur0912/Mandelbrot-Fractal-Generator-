@@ -112,6 +112,14 @@
 					"strict" : false
 				},
 				{
+					"name" : "VGA_CLK",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_BLANK_N",
+					"strict" : false
+				},
+				{
 					"name" : "clk",
 					"strict" : false
 				},
